@@ -123,7 +123,7 @@ Cross-Browser Screenshots
   - Cover Images (if available)
 
 📂 Output:
-- `scraped_articles.json`
+- `04_scraped_articles.json`
 - `article_images/`
 
 ---
@@ -135,7 +135,7 @@ Cross-Browser Screenshots
 - API response normalization
 
 📂 Output:
-- `translation_results.json`
+- `05_translation_results.json`
 
 ---
 
@@ -205,18 +205,18 @@ pip install -r requirements.txt
 
 ## 2️⃣ Run Scraper
 ```bash
-python scraper.py
+python 01_scraper.py
 ```
 
 ## 3️⃣ Run Translator
 ```bash
-python translator.py
+python 02_translator.py
 ```
 (Provide RapidAPI key when prompted)
 
 ## 4️⃣ Run BrowserStack Tests
 ```bash
-python browserstack_test.py
+python 03_browserstack_test.py
 ```
 ---
 # ⭐ Technologies & Tools
