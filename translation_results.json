@@ -1,0 +1,47 @@
+{
+  "spanish_titles": [
+    "Cerrar la brecha educativa",
+    "Las amenazas electorales de Trump",
+    "Me ha escrito un hombre rico, el dueño de Telegram",
+    "Toda esta libertad que no querría perder",
+    "‘Moteras iraníes’"
+  ],
+  "translated_titles": [
+    "Closing the educational gap",
+    "Trump's electoral threats",
+    "A rich man, the owner of Telegram, wrote to me",
+    "All this freedom that I wouldn't want to lose",
+    "'Iranian bikers'"
+  ],
+  "repeated_words": {},
+  "all_word_counts": {
+    "closing": 1,
+    "the": 2,
+    "educational": 1,
+    "gap": 1,
+    "trump": 1,
+    "s": 1,
+    "electoral": 1,
+    "threats": 1,
+    "a": 1,
+    "rich": 1,
+    "man": 1,
+    "owner": 1,
+    "of": 1,
+    "telegram": 1,
+    "wrote": 1,
+    "to": 2,
+    "me": 1,
+    "all": 1,
+    "this": 1,
+    "freedom": 1,
+    "that": 1,
+    "i": 1,
+    "wouldn": 1,
+    "t": 1,
+    "want": 1,
+    "lose": 1,
+    "iranian": 1,
+    "bikers": 1
+  }
+}
