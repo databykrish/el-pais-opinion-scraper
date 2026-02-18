@@ -1,11 +1,11 @@
 """
 Translation & Analysis Module
 
-✔ Translates Spanish titles → English
-✔ Uses RapidAPI translation (optional)
-✔ Performs word frequency analysis
-✔ Detects repeated words (>2 occurrences)
-✔ Saves results to JSON
+Translates Spanish titles -> English
+Uses RapidAPI translation (optional)
+Performs word frequency analysis
+Detects repeated words (>2 occurrences)
+Saves results to JSON
 """
 
 import requests
@@ -15,10 +15,7 @@ import time
 import re
 
 
-# ============================================================================
-# TRANSLATION FUNCTION
-# ============================================================================
-
+# translation func
 def translate_with_rapid_api(spanish_text, api_key):
 
     url = "https://rapid-translate-multi-traduction.p.rapidapi.com/t"
@@ -56,17 +53,14 @@ def translate_with_rapid_api(spanish_text, api_key):
         return f"Error: {str(e)}"
 
 
-# ============================================================================
-# WORD FREQUENCY ANALYSIS (UPDATED ⭐)
-# ============================================================================
-
+# word frequency 
 def analyze_word_frequency(translated_titles):
     """Find words repeated more than twice"""
 
     all_words = []
 
     for title in translated_titles:
-        # ✅ Clean word extraction using regex
+        # word extraction using regex
         words = re.findall(r"\b[a-zA-Z]+\b", title.lower())
         all_words.extend(words)
 
@@ -80,30 +74,21 @@ def analyze_word_frequency(translated_titles):
 
     return repeated_words, word_counts
 
-
-# ============================================================================
-# MAIN EXECUTION
-# ============================================================================
-
+# main execution
 def main():
     print("\n" + "=" * 70)
     print("TRANSLATION & WORD FREQUENCY ANALYSIS")
     print("=" * 70)
 
-    # ──────────────────────────────────────────────────────────────
-    # STEP 1 — API Key Input
-    # ──────────────────────────────────────────────────────────────
-
+    # step1-api key i/p
     api_key = input("\nPaste RapidAPI Key (or press Enter to skip): ").strip()
 
     if not api_key:
-        print("\n⚠️ No API key provided → Using fallback demo translations")
+        print("\n No API key provided → Using fallback demo translations")
         api_key = None
 
-    # ──────────────────────────────────────────────────────────────
-    # STEP 2 — Load Scraped Articles
-    # ──────────────────────────────────────────────────────────────
-
+    
+    # step2
     print("\n[STEP 1] Loading scraped_articles.json...")
     print("─" * 70)
 
@@ -117,21 +102,19 @@ def main():
             if article.get("title")
         ]
 
-        print(f"✓ Loaded {len(spanish_titles)} Spanish titles")
+        print(f"Loaded {len(spanish_titles)} Spanish titles")
 
     except FileNotFoundError:
-        print("✗ scraped_articles.json not found")
-        print("→ Run scraper.py first")
+        print("scraped_articles.json not found")
+        print("Run scraper.py first")
         return
 
-    print("\n📋 Spanish Titles:")
+    print("\n Spanish Titles:")
     for i, title in enumerate(spanish_titles, 1):
         print(f"{i}. {title}")
 
-    # ──────────────────────────────────────────────────────────────
-    # STEP 3 — Translation
-    # ──────────────────────────────────────────────────────────────
 
+    # step3 translate
     print("\n[STEP 2] Translating titles...")
     print("─" * 70)
 
@@ -144,30 +127,28 @@ def main():
             translated = translate_with_rapid_api(title, api_key)
             translated_titles.append(translated)
 
-            print(f"   English: {translated}")
+            print(f" English: {translated}")
 
             if i < len(spanish_titles):
                 time.sleep(1)
 
     else:
-        # ✅ Simple fallback translations (for demo only)
+        # fallback translations (demo)
         translated_titles = [f"[Demo Translation] {t}" for t in spanish_titles]
 
         for sp, en in zip(spanish_titles, translated_titles):
-            print(f"\n✓ Spanish: {sp}")
+            print(f"\n Spanish: {sp}")
             print(f"  English: {en}")
 
-    # ──────────────────────────────────────────────────────────────
-    # STEP 4 — Word Frequency Analysis
-    # ──────────────────────────────────────────────────────────────
-
+    
+    # step4 word freq
     print("\n[STEP 3] Analyzing repeated words...")
     print("─" * 70)
 
     repeated_words, all_word_counts = analyze_word_frequency(translated_titles)
 
     if repeated_words:
-        print("\n✓ Repeated Words (>2 occurrences):\n")
+        print("\n Repeated Words (>2 occurrences):\n")
 
         sorted_words = sorted(
             repeated_words.items(),
@@ -179,12 +160,10 @@ def main():
             print(f"'{word}' → {count} times")
 
     else:
-        print("\n✓ No words repeated more than twice")
+        print("\n No words repeated more than twice")
 
-    # ──────────────────────────────────────────────────────────────
-    # STEP 5 — Save Results
-    # ──────────────────────────────────────────────────────────────
-
+    
+    # step5
     print("\n[STEP 4] Saving results...")
     print("─" * 70)
 
@@ -198,16 +177,9 @@ def main():
     with open("translation_results.json", "w", encoding="utf-8") as f:
         json.dump(results, f, ensure_ascii=False, indent=2)
 
-    print("✓ Saved → translation_results.json")
+    print("Saved → translation_results.json")
+    print("PROCESS COMPLETE")
 
-    print("\n" + "=" * 70)
-    print("PROCESS COMPLETE ✅")
-    print("=" * 70)
-
-
-# ============================================================================
-# ENTRY POINT
-# ============================================================================
 
 if __name__ == "__main__":
     main()
