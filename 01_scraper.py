@@ -1,17 +1,3 @@
-"""
-El País Opinion Scraper — FINAL HARDENED INTERVIEW VERSION
-
-✔ Handles cookie banners
-✔ Ensures Spanish language
-✔ Scrolls to trigger lazy loading
-✔ Extracts links globally
-✔ Filters REAL article URLs
-✔ Excludes category pages
-✔ Extracts accurate titles
-✔ Extracts full article content
-✔ Downloads images
-"""
-
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -24,12 +10,12 @@ import json
 import re
 import time
 
-# Create folder for images
+# folder for images
 if not os.path.exists("article_images"):
     os.makedirs("article_images")
 
 
-# ✅ Cookie Banner Handler
+# Cookie Handler
 def accept_cookies(driver):
     wait = WebDriverWait(driver, 5)
 
@@ -58,7 +44,7 @@ def accept_cookies(driver):
         pass
 
 
-# ✅ Scroll Helper (Lazy Loading Fix)
+# Scroll func
 def scroll_page(driver, scrolls=5):
     print("\n✓ Triggering lazy loading via scroll...")
 
@@ -68,7 +54,7 @@ def scroll_page(driver, scrolls=5):
         time.sleep(1.5)
 
 
-# ✅ Image Downloader
+# image 
 def download_image(img_url, filename):
     try:
         response = requests.get(img_url, timeout=10)
@@ -81,7 +67,7 @@ def download_image(img_url, filename):
     return False
 
 
-# ✅ Hybrid Title Extractor
+# Title extraction
 def extract_title(driver):
     selectors = [
         "h1[data-dtm-region='articulo_titulo']",
@@ -105,7 +91,7 @@ def extract_title(driver):
         return None
 
 
-# ✅ Extract FULL Article Content
+# article content extraction
 def extract_full_content(driver):
     selectors = [
         "div[data-dtm-region='articulo_cuerpo'] p",
@@ -131,7 +117,7 @@ def extract_full_content(driver):
     return None
 
 
-# ✅ Extract & Save Image
+# after everything extract and save
 def extract_and_save_image(driver, idx):
     selectors = ["figure img", "article img", "img"]
 
@@ -157,7 +143,7 @@ def extract_and_save_image(driver, idx):
     return None
 
 
-# ✅ Main Scraper Logic
+# main scrapping logic
 def scrape_el_pais():
     print("\n" + "=" * 70)
     print("EL PAÍS OPINION SCRAPER — FINAL HARDENED VERSION")
@@ -175,10 +161,10 @@ def scrape_el_pais():
 
         accept_cookies(driver)
 
-        # ✅ Wait for anchors (more reliable than waiting for articles)
+        # wait for anchors (more reliable than waiting for articles)
         wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "a")))
 
-        # 🌍 Language Validation
+        # spanish language confirmation
         lang = driver.find_element(By.TAG_NAME, "html").get_attribute("lang")
         print(f"🌍 Language detected: {lang}")
 
@@ -195,7 +181,7 @@ def scrape_el_pais():
             try:
                 href = link_el.get_attribute("href")
 
-                # ✅ FINAL FLEXIBLE ARTICLE FILTER
+                # ARTICLE FILTER
                 if (
                     href
                     and "/opinion/" in href
@@ -224,7 +210,7 @@ def scrape_el_pais():
             driver.get(url)
             accept_cookies(driver)
 
-            # ✅ Scroll to avoid sticky header overlap
+            # to avoid sticky header overlap
             driver.execute_script("window.scrollTo(0, 500);")
 
             wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "article")))
