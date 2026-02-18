@@ -1,9 +1,9 @@
-# 🌍 El País Opinion Scraper  
+#  El País Opinion Scraper  
 ### Selenium • API Integration • Text Intelligence • BrowserStack
 
 ---
 
-## 🚀 Project Context
+## Project Context
 
 Developed as part of a **Customer Engineer Interview Assignment**, this project simulates a real-world SaaS testing and automation scenario involving:
 
@@ -17,7 +17,7 @@ This solution reflects how a **Customer Engineer bridges product capabilities wi
 
 ---
 
-# 🎯 Problem Statement
+#  Problem Statement
 
 Modern automation and testing workflows must handle:
 
@@ -33,9 +33,9 @@ Build a resilient automation pipeline that scrapes Spanish news content, enriche
 
 ---
 
-# ⚠️ Key Challenges Encountered
+#  Key Challenges Encountered
 
-### 🧩 1. Cookie Consent Blocking Automation
+###  1. Cookie Consent Blocking Automation
 - Multi-layered consent dialogs
 - Click interception issues
 
@@ -46,7 +46,7 @@ Build a resilient automation pipeline that scrapes Spanish news content, enriche
 
 ---
 
-### 🌐 2. Lazy-Loaded / Dynamic Content
+###  2. Lazy-Loaded / Dynamic Content
 - Articles not immediately available
 - Scroll-triggered rendering
 
@@ -57,7 +57,7 @@ Build a resilient automation pipeline that scrapes Spanish news content, enriche
 
 ---
 
-### 🏗 3. Inconsistent Article Structures
+###  3. Inconsistent Article Structures
 - Titles located in varying HTML hierarchies
 
 **Solution Implemented:**  
@@ -66,7 +66,7 @@ Build a resilient automation pipeline that scrapes Spanish news content, enriche
 
 ---
 
-### 🔄 4. Translation API Response Variability
+###  4. Translation API Response Variability
 - API returning list vs dictionary formats
 
 **Solution Implemented:**  
@@ -75,7 +75,7 @@ Build a resilient automation pipeline that scrapes Spanish news content, enriche
 
 ---
 
-### 🧵 5. Parallel Execution Complexity
+###  5. Parallel Execution Complexity
 - Running concurrent BrowserStack sessions
 
 **Solution Implemented:**  
@@ -84,7 +84,7 @@ Build a resilient automation pipeline that scrapes Spanish news content, enriche
 
 ---
 
-### 🖥📱 6. Cross-Browser / Cross-Device Behaviour
+###  6. Cross-Browser / Cross-Device Behaviour
 - Desktop vs Mobile rendering differences
 
 **Solution Implemented:**  
@@ -92,7 +92,7 @@ Build a resilient automation pipeline that scrapes Spanish news content, enriche
 ✔ Real mobile device testing  
 
 ---
-# ✅ Solution Architecture
+#  Solution Architecture
 
 ```
 Selenium Scraper
@@ -111,9 +111,9 @@ Cross-Browser Screenshots
 ```
 ---
 
-# 🧪 Features Implemented
+#  Features Implemented
 
-## ✅ Web Scraping Automation (Selenium)
+##  Web Scraping Automation (Selenium)
 
 - Navigates to **El País – Opinion Section**
 - Ensures **Spanish language content**
@@ -122,24 +122,24 @@ Cross-Browser Screenshots
   - Spanish Article Content  
   - Cover Images (if available)
 
-📂 Output:
+ Output:
 - `04_scraped_articles.json`
 - `article_images/`
 
 ---
 
-## ✅ Translation & Enrichment (RapidAPI)
+##  Translation & Enrichment (RapidAPI)
 
 - Spanish → English translation
 - Rapid Translate Multi Traduction API integration
 - API response normalization
 
-📂 Output:
+ Output:
 - `05_translation_results.json`
 
 ---
 
-## ✅ Text Intelligence & Analysis
+##  Text Intelligence & Analysis
 
 - Tokenization of translated headers
 - Word frequency computation
@@ -147,16 +147,16 @@ Cross-Browser Screenshots
 
 ---
 
-## ✅ Cloud Cross-Browser Testing (BrowserStack)
+##  Cloud Cross-Browser Testing (BrowserStack)
 
 Executed using **BrowserStack Automate**
 
-🖥 Desktop Browsers:
+ Desktop Browsers:
 - Chrome – Windows 10  
 - Firefox – Windows 10  
 - Safari – macOS Monterey  
 
-📱 Real Mobile Devices:
+ Real Mobile Devices:
 - Samsung Galaxy S22  
 - iPhone 14  
 
@@ -165,12 +165,12 @@ Executed using **BrowserStack Automate**
 ✔ Session status reporting  
 ✔ Automated screenshot capture  
 
-📂 Output:
+ Output:
 - `screenshots/`
 
 ---
 
-# 📸 Visual Validation
+#  Visual Validation
 
 Automated screenshots captured across:
 
@@ -185,7 +185,7 @@ Ensuring:
 
 ---
 
-# 🧰 Tech Stack
+#  Tech Stack
 
 - **Python**
 - **Selenium WebDriver**
@@ -196,7 +196,7 @@ Ensuring:
 - **Threading**
 
 ---
-# 🚀 How To Run
+#  How To Run
 
 ## 1️⃣ Install Dependencies
 ```bash
