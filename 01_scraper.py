@@ -26,10 +26,10 @@ def accept_cookies(driver):
             )
         )
         accept_btn.click()
-        print("✓ Cookies accepted")
+        print("Cookies accepted")
 
     except TimeoutException:
-        print("✓ Cookie banner not shown")
+        print("Cookie banner not shown")
 
     try:
         agree_btn = wait.until(
@@ -38,7 +38,7 @@ def accept_cookies(driver):
             )
         )
         agree_btn.click()
-        print("✓ Secondary cookies handled")
+        print("Secondary cookies handled")
 
     except TimeoutException:
         pass
@@ -50,7 +50,7 @@ def scroll_page(driver, scrolls=5):
 
     for i in range(scrolls):
         driver.execute_script("window.scrollBy(0, 1000);")
-        print(f"  ✓ Scroll {i+1}")
+        print(f"Scroll {i+1}")
         time.sleep(1.5)
 
 
@@ -146,7 +146,7 @@ def extract_and_save_image(driver, idx):
 # main scrapping logic
 def scrape_el_pais():
     print("\n" + "=" * 70)
-    print("EL PAÍS OPINION SCRAPER — FINAL HARDENED VERSION")
+    print("EL PAÍS OPINION SCRAPER")
     print("=" * 70)
 
     chrome_options = Options()
@@ -166,14 +166,14 @@ def scrape_el_pais():
 
         # spanish language confirmation
         lang = driver.find_element(By.TAG_NAME, "html").get_attribute("lang")
-        print(f"🌍 Language detected: {lang}")
+        print(f"Language detected: {lang}")
 
         scroll_page(driver)
 
         print("\n[2/6] Collecting REAL article links...")
 
         all_links = driver.find_elements(By.CSS_SELECTOR, "a")
-        print(f"✓ Total links found on page: {len(all_links)}")
+        print(f"Total links found on page: {len(all_links)}")
 
         article_links = []
 
@@ -198,7 +198,7 @@ def scrape_el_pais():
             except:
                 continue
 
-        print(f"✓ Collected {len(article_links)} article links")
+        print(f"Collected {len(article_links)} article links")
 
         print("\n[3/6] Scraping articles...")
 
@@ -219,13 +219,13 @@ def scrape_el_pais():
             content = extract_full_content(driver)
             image = extract_and_save_image(driver, idx)
 
-            print(f"📝 Title: {title}")
-            print(f"📄 Content: {content[:120]}..." if content else "📄 Content not found")
+            print(f"Title: {title}")
+            print(f"Content: {content[:120]}..." if content else " Content not found")
 
             if image:
-                print(f"🖼 Image saved → {image}")
+                print(f"Image saved → {image}")
             else:
-                print("⚠️ No image found")
+                print("No image found")
 
             articles_data.append({
                 "article_number": idx,
@@ -240,22 +240,22 @@ def scrape_el_pais():
         with open("scraped_articles.json", "w", encoding="utf-8") as f:
             json.dump(articles_data, f, ensure_ascii=False, indent=2)
 
-        print("✓ Data saved → scraped_articles.json")
+        print("Data saved → scraped_articles.json")
 
         print("\n[5/6] Spanish Titles:")
         print("=" * 70)
         for article in articles_data:
             print(article["title"])
 
-        print("\n[6/6] Scraping Complete ✅")
+        print("\n[6/6] Scraping Complete")
 
     except Exception as e:
-        print("✗ Error:", e)
+        print("Error:", e)
 
     finally:
         print("\nClosing browser...")
         driver.quit()
-        print("✓ Done")
+        print("Done")
 
 
 if __name__ == "__main__":
