@@ -10,10 +10,10 @@ ACCESS_KEY = "5ryZLMsCPePdpHqN2kda"
 
 BROWSERSTACK_URL = f"https://{USERNAME}:{ACCESS_KEY}@hub-cloud.browserstack.com/wd/hub"
 
-# ✅ Create screenshots folder
+# screenshots folder
 if not os.path.exists("screenshots"):
     os.makedirs("screenshots")
-    print("✓ Created 'screenshots' directory")
+    print("Created 'screenshots' directory")
 
 
 browsers = [
@@ -53,14 +53,14 @@ browsers = [
 ]
 
 
-# ✅ Safe filename generator
+# Safe filename generator
 def safe_filename(name):
     return re.sub(r'[^a-zA-Z0-9_]', '_', name)
 
 
 def run_test(cap):
 
-    print(f"\n🚀 Starting → {cap['sessionName']}")
+    print(f"\n Starting → {cap['sessionName']}")
 
     options = Options()
 
@@ -87,25 +87,25 @@ def run_test(cap):
         driver.get("https://elpais.com/opinion/")
         time.sleep(5)
 
-        print(f"🌍 {cap['sessionName']} → Loaded")
-        print(f"📝 Title: {driver.title}")
+        print(f" {cap['sessionName']} → Loaded")
+        print(f" Title: {driver.title}")
 
-        # ✅ Screenshot after successful load
+        # screenshot after successful load
         screenshot_path = f"screenshots/{filename}.png"
         driver.save_screenshot(screenshot_path)
-        print(f"📸 Screenshot saved → {screenshot_path}")
+        print(f"Screenshot saved → {screenshot_path}")
 
         driver.execute_script(
             'browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"passed","reason": "Page loaded successfully"}}'
         )
 
     except Exception as e:
-        print(f"❌ {cap['sessionName']} → {e}")
+        print(f" {cap['sessionName']} → {e}")
 
-        # ✅ Screenshot on failure
+        # failure ss
         error_screenshot = f"screenshots/{filename}_ERROR.png"
         driver.save_screenshot(error_screenshot)
-        print(f"📸 Error screenshot saved → {error_screenshot}")
+        print(f" Error screenshot saved → {error_screenshot}")
 
         driver.execute_script(
             f'browserstack_executor: {{"action": "setSessionStatus", "arguments": {{"status":"failed","reason": "{str(e)}"}}}}'
@@ -113,7 +113,7 @@ def run_test(cap):
 
     finally:
         driver.quit()
-        print(f"✅ Finished → {cap['sessionName']}")
+        print(f"Finished → {cap['sessionName']}")
 
 
 threads = []
@@ -126,4 +126,4 @@ for browser in browsers:
 for thread in threads:
     thread.join()
 
-print("\n🎯 All BrowserStack tests completed!")
+print("\n All BrowserStack tests completed!")
